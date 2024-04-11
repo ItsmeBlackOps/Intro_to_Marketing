@@ -1,163 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Generator</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
 
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAtgTzVkmcgbLS6AXI9zQ7PWdHab00fJeo",
-    authDomain: "introtomarketing-5bf1f.firebaseapp.com",
-    projectId: "introtomarketing-5bf1f",
-    storageBucket: "introtomarketing-5bf1f.appspot.com",
-    messagingSenderId: "223586449570",
-    appId: "1:223586449570:web:1bc6046999162ccb67bffb",
-    measurementId: "G-K60XCLKEXR"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getFirestore(app);
-
-</script>
 
 </head>
-<body class="bg-gray-100">
-    <form id="emailForm" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md mt-10">
-        <input type="text" id="candidateName" placeholder="Candidate Name" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="text" id="recruiterName" placeholder="Recruiter Name" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="text" id="role" placeholder="Role" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="email" id="recruiterEmail" placeholder="Recruiter Email" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="tel" id="recruiterPhone" placeholder="Recruiter Phone" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="text" id="recruiterDesignation" placeholder="Recruiter Designation" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="text" id="teamLeadName" placeholder="Team Lead Name" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="email" id="teamLeadEmail" placeholder="Team Lead Email" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="tel" id="teamLeadPhone" placeholder="Team Lead Phone" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="email" id="candidateEmail" placeholder="Candidate Email" required class="w-full mb-4 px-3 py-2 border rounded-md">
-        <input type="tel" id="candidatePhone" placeholder="Candidate Phone" required class="w-full mb-4 px-3 py-2 border rounded-md">
+<!-- <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script> -->
+
+  <body class="bg-gray-100">
+    <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md mt-10">
+      <h1 class="text-2xl font-bold mb-4">Email Generator</h1>
+      <form id="emailForm">
+        <div class="mb-4">
+          <label for="candidateName" class="block text-sm font-semibold mb-1">Candidate Name</label>
+          <input type="text" id="candidateName" placeholder="Enter candidate's name" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div class="mb-4">
+          <label for="recruiterName" class="block text-sm font-semibold mb-1">Recruiter Name</label>
+          <input type="text" id="recruiterName" placeholder="Enter recruiter's name" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div class="mb-4">
+          <label for="role" class="block text-sm font-semibold mb-1">Role</label>
+          <input type="text" id="role" placeholder="Enter role" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <!-- Add similar labels and input fields for other information -->
+        <div class="mb-4">
+          <label for="recruiterEmail" class="block text-sm font-semibold mb-1">Recruiter Email</label>
+          <input type="email" id="recruiterEmail" placeholder="Enter recruiter's email" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div class="mb-4">
+          <label for="recruiterPhone" class="block text-sm font-semibold mb-1">Recruiter Phone</label>
+          <input type="tel" id="recruiterPhone" placeholder="Enter recruiter's phone" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div class="mb-4">
+          <label for="recruiterDesignation" class="block text-sm font-semibold mb-1">Recruiter Designation</label>
+          <input type="text" id="recruiterDesignation" placeholder="Enter recruiter's designation" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div class="mb-4">
+          <label for="teamLeadName" class="block text-sm font-semibold mb-1">Team Lead Name</label>
+          <input type="text" id="teamLeadName" placeholder="Enter team lead's name" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div class="mb-4">
+          <label for="teamLeadEmail" class="block text-sm font-semibold mb-1">Team Lead Email</label>
+          <input type="email" id="teamLeadEmail" placeholder="Enter team lead's email" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div class="mb-4">
+          <label for="teamLeadPhone" class="block text-sm font-semibold mb-1">Team Lead Phone</label>
+          <input type="tel" id="teamLeadPhone" placeholder="Enter team lead's phone" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div class="mb-4">
+          <label for="candidateEmail" class="block text-sm font-semibold mb-1">Candidate Email</label>
+          <input type="email" id="candidateEmail" placeholder="Enter candidate's email" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div class="mb-4">
+          <label for="candidatePhone" class="block text-sm font-semibold mb-1">Candidate Phone</label>
+          <input type="tel" id="candidatePhone" placeholder="Enter candidate's phone" required class="w-full px-3 py-2 border rounded-md">
+        </div>
+  
         <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Generate Email</button>
-        <!-- <button type="button" id="copyButton" class="hidden w-full bg-blue-500 text-white py-2 px-4 rounded-md mb-4 hover:bg-blue-600">Copy Email Content</button> -->
-
-    </form>
-
-    <div id="generatedEmailContent"></div>
-
-    <script>
-      document.getElementById("emailForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        // Gather input values
-        var candidateName = document.getElementById("candidateName").value;
-        var recruiterName = document.getElementById("recruiterName").value;
-        var role = document.getElementById("role").value;
-        var recruiterEmail = document.getElementById("recruiterEmail").value;
-        var recruiterPhone = document.getElementById("recruiterPhone").value;
-        var recruiterDesignation = document.getElementById("recruiterDesignation").value;
-        var teamLeadName = document.getElementById("teamLeadName").value;
-        var teamLeadEmail = document.getElementById("teamLeadEmail").value;
-        var teamLeadPhone = document.getElementById("teamLeadPhone").value;
-        var candidateEmail = document.getElementById("candidateEmail").value;
-        var candidatePhone = document.getElementById("candidatePhone").value;
-        
-        // Generate the email content
-        var emailContent = `Advancement in the Marketing Process: Next Steps & Introduction <br><br>
-
-Dear <strong>${candidateName}</strong>,<br><br> 
+        <button type="button" id="clearButton" class="w-full mt-2 bg-gray-300 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-400">Clear Form</button>
+      </form>
   
-I trust this message finds you in good health and high spirits. <br><br> 
+      <div id="generatedEmailContent" class="mt-8"></div>
+      <div id="confirmationMessage" class="hidden mt-4 text-green-600 font-semibold">Email generated successfully!</div>
+    </div>
   
-We are pleased to convey that, upon thorough evaluation, your profile has been selected for further progression within our marketing process. Your profile has been handed over to one of our most esteemed recruitment specialists. <br><br> 
-  
-Allow me to introduce you to <strong>${recruiterName}</strong>, who boasts a commendable record in placing candidates within the <strong>${role}</strong>. Their expertise will be instrumental in the forthcoming steps. <br><br> 
-  
-In the unlikely event that you do not receive communication from <strong>${recruiterName}</strong> within an hour subsequent to this notification, we encourage you to initiate contact with either them or directly with me, to ensure a seamless continuation of the process. <br><br> 
-  
-For transparency and convenience, below is our structured escalation matrix: <br><br> 
-  
-1. <strong>Primary Point of Contact:</strong><br>  
-&emsp;• Name: <strong>${recruiterName}</strong><br>
-&emsp;• Email: <strong>${recruiterEmail}</strong><br>
-&emsp;• Phone: <strong>${recruiterPhone}</strong><br>
-&emsp;• Designation: <strong>${recruiterDesignation}</strong><br><br>  
- 
-2. <strong>2nd Point of Contact:</strong><br>  
-&emsp;• Name: <strong>${teamLeadName}</strong><br>
-&emsp;• Email: <strong>${teamLeadEmail}</strong><br>
-&emsp;• Phone: <strong>${teamLeadPhone}</strong><br>
-&emsp;• Designation: Team Lead<br><br>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js"; // Import Firestore
 
-If you encounter any challenges, you are welcome to liaise with: <br><br>  
-1. <strong>Management Contact:</strong><br>  
-&emsp;- Name: Tushar Ahuja<br>
-&emsp;- Email: Tushar.ahuja@silverspaceinc.com<br>
-&emsp;- Designation: Marketing Manager<br><br>  
+    // Required for side-effect
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-2. <strong>Compliance Contact:</strong><br>  
-&emsp;- Name: Ronak Gahlot<br>
-&emsp;- Email: rgahlot@silverspaceinc.com<br>
-&emsp;- Phone: +1 (336) 860-0676<br>
-&emsp;- Designation: Lead Compliance Officer<br><br>  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtgTzVkmcgbLS6AXI9zQ7PWdHab00fJeo",
+      authDomain: "introtomarketing-5bf1f.firebaseapp.com",
+      databaseURL: "https://introtomarketing-5bf1f-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "introtomarketing-5bf1f",
+      storageBucket: "introtomarketing-5bf1f.appspot.com",
+      messagingSenderId: "223586449570",
+      appId: "1:223586449570:web:1bc6046999162ccb67bffb",
+      measurementId: "G-K60XCLKEXR"
+    };
 
-Your professional journey is of paramount importance to us. Wishing you all the best in this endeavor and may your career aspirations be met with great success. <br><br>  
- ==================================================================================== <br> 
-Hi <strong>${recruiterName}</strong>,<br><br> 
-  
-Enclosed, please find the documentation pertinent to <strong>${candidateName}</strong>. Your prompt review and subsequent scheduling of a call with the candidate would be greatly appreciated, in alignment with our commitment to expediting the marketing process. <br><br>  
-  
-Email id: <strong>${candidateEmail}</strong><br>
-Contact no: <strong>${candidatePhone}</strong><br><br>
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
+    document.getElementById("emailForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      // Gather input values
+      var candidateName = document.getElementById("candidateName").value;
+      var recruiterName = document.getElementById("recruiterName").value;
+      var role = document.getElementById("role").value;
+      var recruiterEmail = document.getElementById("recruiterEmail").value;
+      var recruiterPhone = document.getElementById("recruiterPhone").value;
+      var recruiterDesignation = document.getElementById("recruiterDesignation").value;
+      var teamLeadName = document.getElementById("teamLeadName").value;
+      var teamLeadEmail = document.getElementById("teamLeadEmail").value;
+      var teamLeadPhone = document.getElementById("teamLeadPhone").value;
+      var candidateEmail = document.getElementById("candidateEmail").value;
+      var candidatePhone = document.getElementById("candidatePhone").value;
 
-Yours sincerely,`;
+      // Generate the email content
+      var emailContent = `Advancement in the Marketing Process: Next Steps & Introduction <br><br>
 
+  Dear <strong>${candidateName}</strong>,<br><br> 
     
-        // Display generated email content
-        document.getElementById("generatedEmailContent").innerHTML = emailContent;
-        // Show the copy button
-        // document.getElementById("copyButton").classList.remove("hidden");
+  I trust this message finds you in good health and high spirits. <br><br> 
+    
+  We are pleased to convey that, upon thorough evaluation, your profile has been selected for further progression within our marketing process. Your profile has been handed over to one of our most esteemed recruitment specialists. <br><br> 
+    
+  Allow me to introduce you to <strong>${recruiterName}</strong>, who boasts a commendable record in placing candidates within the <strong>${role}</strong>. Their expertise will be instrumental in the forthcoming steps. <br><br> 
+    
+  In the unlikely event that you do not receive communication from <strong>${recruiterName}</strong> within an hour subsequent to this notification, we encourage you to initiate contact with either them or directly with me, to ensure a seamless continuation of the process. <br><br> 
+    
+  For transparency and convenience, below is our structured escalation matrix: <br><br> 
+    
+  1. <strong>Primary Point of Contact:</strong><br>  
+  &emsp;• Name: <strong>${recruiterName}</strong><br>
+  &emsp;• Email: <strong>${recruiterEmail}</strong><br>
+  &emsp;• Phone: <strong>${recruiterPhone}</strong><br>
+  &emsp;• Designation: <strong>${recruiterDesignation}</strong><br><br>  
+  
+  2. <strong>2nd Point of Contact:</strong><br>  
+  &emsp;• Name: <strong>${teamLeadName}</strong><br>
+  &emsp;• Email: <strong>${teamLeadEmail}</strong><br>
+  &emsp;• Phone: <strong>${teamLeadPhone}</strong><br>
+  &emsp;• Designation: Team Lead<br><br>
 
-        // Store in Firebase
-        db.collection("emails").add({
-            candidateName: candidateName,
-            recruiterName: recruiterName,
-            role: role,
-            emailContent: emailContent,
-            // include other fields as necessary
+  If you encounter any challenges, you are welcome to liaise with: <br><br>  
+  1. <strong>Management Contact:</strong><br>  
+  &emsp;- Name: Tushar Ahuja<br>
+  &emsp;- Email: Tushar.ahuja@silverspaceinc.com<br>
+  &emsp;- Designation: Marketing Manager<br><br>  
+
+  2. <strong>Compliance Contact:</strong><br>  
+  &emsp;- Name: Ronak Gahlot<br>
+  &emsp;- Email: rgahlot@silverspaceinc.com<br>
+  &emsp;- Phone: +1 (336) 860-0676<br>
+  &emsp;- Designation: Lead Compliance Officer<br><br>  
+
+  Your professional journey is of paramount importance to us. Wishing you all the best in this endeavor and may your career aspirations be met with great success. <br><br>  
+  ==================================================================================== <br> 
+  Hi <strong>${recruiterName}</strong>,<br><br> 
+    
+  Enclosed, please find the documentation pertinent to <strong>${candidateName}</strong>. Your prompt review and subsequent scheduling of a call with the candidate would be greatly appreciated, in alignment with our commitment to expediting the marketing process. <br><br>  
+    
+  Email id: <strong>${candidateEmail}</strong><br>
+  Contact no: <strong>${candidatePhone}</strong><br><br>
+
+
+  Yours sincerely,`;
+
+
+      // Display generated email content
+      document.getElementById("generatedEmailContent").innerHTML = emailContent;
+      // Show the copy button
+      // document.getElementById("copyButton").classList.remove("hidden");
+
+      // Store in Firebase
+      addDoc(collection(db, "email"), {
+        cEmail: candidateEmail,
+        cName: candidateName,
+        cPhone: candidatePhone,
+        cRole: role,
+        rDesignation: recruiterDesignation,
+        rEmail: recruiterEmail,
+        rName: recruiterName,
+        rPhone: recruiterPhone,
+        tlEmail: teamLeadEmail,
+        tlName: teamLeadName,
+        tlPhone: teamLeadPhone,
+        body: document.getElementById("generatedEmailContent").innerHTML
+
+      })
+        .then(function (docRef) {
+          console.log("Document written with ID: ", docRef.id);
         })
-        .then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function(error) {
-            console.error("Error adding document: ", error);
+        .catch(function (error) {
+          console.error("Error adding document: ", error);
         });
-      });
+    });
+    document.getElementById("clearButton").addEventListener("click", function() {
+  // Clear input fields
+  document.getElementById("candidateName").value = "";
+  document.getElementById("recruiterName").value = "";
+  document.getElementById("role").value = "";
+  document.getElementById("recruiterEmail").value = "";
+  document.getElementById("recruiterPhone").value = "";
+  document.getElementById("recruiterDesignation").value = "";
+  document.getElementById("teamLeadName").value = "";
+  document.getElementById("teamLeadEmail").value = "";
+  document.getElementById("teamLeadPhone").value = "";
+  document.getElementById("candidateEmail").value = "";
+  document.getElementById("candidatePhone").value = "";
 
-      // Copy email content to clipboard
-//       document.getElementById("copyButton").addEventListener("click", function() {
-//     var emailContent = document.getElementById("generatedEmailContent").outerHTML;
-//     navigator.clipboard.writeText(emailContent).then(function() {
-//         alert("Email content copied to clipboard!");
-//     }).catch(function(error) {
-//         console.error("Error copying to clipboard: ", error);
-//     });
-// });
+  // Clear generated email content
+  document.getElementById("generatedEmailContent").innerHTML = "";
+
+  // Hide confirmation message if shown
+  document.getElementById("confirmationMessage").classList.add("hidden");
+});
+
+
+    // Copy email content to clipboard
+    //       document.getElementById("copyButton").addEventListener("click", function() {
+    //     var emailContent = document.getElementById("generatedEmailContent").outerHTML;
+    //     navigator.clipboard.writeText(emailContent).then(function() {
+    //         alert("Email content copied to clipboard!");
+    //     }).catch(function(error) {
+    //         console.error("Error copying to clipboard: ", error);
+    //     });
+    // });
 
 
 
 
-    </script>
-    </body>
+  </script>
+</body>
+
 </html>
